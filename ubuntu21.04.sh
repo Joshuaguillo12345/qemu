@@ -15,7 +15,7 @@ echo "Installing QEMU (2-3m)..."
 ./dist/proot -S . apt install qemu-system-x86 curl -y > /dev/null 2>&1
 echo Downloading Windows Disk...
 curl -L -o ubuntu.iso http://www.releases.ubuntu.com/21.04/ubuntu-21.04-desktop-amd64.iso
-apt install qdmu-utils
+apt install qemu-utils
 qemu-img create ubuntu.qcow2 20G
 echo Your VNC IP Address:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
