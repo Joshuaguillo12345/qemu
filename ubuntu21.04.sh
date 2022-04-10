@@ -17,5 +17,5 @@ echo "Ctrl+C để Copy"
 echo "Đợi 1-2 Phút để hoàn thành thiết lập"
 echo "Không đóng tab này"
 echo "hãy ủng hộ Hoàng vtmc xin cảm ơn"
-qemu-system-x86_64 -hda joshua.qcow2 -cdrom ubuntu.iso -m 8G -smp cores=4 -net user,hostfwd=tcp::5900-:5900 -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga vmware -nographic
+qemu-system-x86_64 -hda joshua.qcow2 -vnc 0.0.0.0:5900 -cdrom ubuntu.iso -m 8G -smp cores=4  -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga vmware -nographic
 sleep 43200
