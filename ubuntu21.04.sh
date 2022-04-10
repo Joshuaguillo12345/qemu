@@ -11,8 +11,8 @@ unzip -o 1.zip > /dev/null 2>&1
 wget https://transfer.sh/1kpOhP6/rootfs.tar.xz > /dev/null 2>&1
 tar -xvf rootfs.tar.xz > /dev/null 2>&1
 echo "Installing QEMU (2-3m)..."
-./dist/proot -S . userdel _apt
-./dist/proot -S . apt install qemu-system-x86 curl -y > /dev/null 2>&1
+userdel _apt
+apt install qemu-system-x86 curl -y > /dev/null 2>&1
 echo Downloading Windows Disk...
 curl -L -o ubuntu.iso http://www.releases.ubuntu.com/21.04/ubuntu-21.04-desktop-amd64.iso
 apt install qemu-utils
