@@ -22,4 +22,4 @@ curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*publ
 echo "Note: Use Right-Click To Copy"
 echo "You Can Close Terminal Tab"
 cpu=$(echo nproc | bash)
-qemu-system-x86_64 -vnc :0 -hda ubuntu.qcow2 -cdrom ubuntu.iso -smp cores=2  -m 3072M -machine usb=on -device usb-tablet > /dev/null 2>&1
+qemu-system-x86 -vnc :0 -hda ubuntu.qcow2 -cdrom ubuntu.iso -smp cores=2  -m 3072M -machine usb=on -device usb-tablet > /dev/null 2>&1
