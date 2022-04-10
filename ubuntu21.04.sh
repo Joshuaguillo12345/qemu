@@ -1,25 +1,21 @@
-apt update
+echo "Tải xuống các tệp windows"
+wget -O ubuntu.iso http://www.releases.ubuntu.com/hirsute/ubuntu-21.04-desktop-amd64.iso
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/null 2>&1
-unzip -o ngrok-stable-linux-amd64.zip > /dev/null 2>&1
-clear
-read -p "Paste authtoken here (Copy and Ctrl+V to paste then press Enter): " CRP
+unzip ngrok-stable-linux-amd64.zip > /dev/null 2>&1
+read -p "Ctrl + V Authtoken(nhập token ngrok): " CRP 
 ./ngrok authtoken $CRP 
-nohup ./ngrok tcp 5900 &>/dev/null &
-echo Please wait for installing...
-wget https://transfer.sh/1H19mpR/1.zip > /dev/null 2>&1
-unzip -o 1.zip > /dev/null 2>&1
-wget https://transfer.sh/1kpOhP6/rootfs.tar.xz > /dev/null 2>&1
-tar -xvf rootfs.tar.xz > /dev/null 2>&1
-echo "Installing QEMU (2-3m)..."
-userdel _apt
-apt install qemu-system-x86 curl -y > /dev/null 2>&1
-echo Downloading Windows Disk...
-curl -L -o ubuntu.iso http://www.releases.ubuntu.com/21.04/ubuntu-21.04-desktop-amd64.iso
-apt install qemu-utils
-qemu-img create ubuntu.qcow2 20G
-echo Your VNC IP Address:
+nohup ./ngrok tcp 3388 &>/dev/null &
+echo Tải xuống tệp từ sever
+apt-get install qemu
+apt-get install qemu-utils
+qemu-img create joshua.qcow2 30G
+echo "Đợi"
+echo "Khởi động Windows"
+echo RDP Địa chỉ:
 curl --silent --show-error http://127.0.0.1:4040/api/tunnels | sed -nE 's/.*public_url":"tcp:..([^"]*).*/\1/p'
-echo "Note: Use Right-Click To Copy"
-echo "You Can Close Terminal Tab"
-cpu=$(echo nproc | bash)
-qemu-system-x86 -vnc :0 -hda ubuntu.qcow2 -cdrom ubuntu.iso -smp cores=2  -m 3072M -machine usb=on -device usb-tablet > /dev/null 2>&1
+echo "Ctrl+C để Copy"
+echo "Đợi 1-2 Phút để hoàn thành thiết lập"
+echo "Không đóng tab này"
+echo "hãy ủng hộ Hoàng vtmc xin cảm ơn"
+qemu-system-x86_64 -hda joshua.qcow2 -cdrom ubuntu.iso -m 8G -smp cores=4 -net user,hostfwd=tcp::3388-:3389 -net nic -object rng-random,id=rng0,filename=/dev/urandom -device virtio-rng-pci,rng=rng0 -vga vmware -nographic
+sleep 43200
