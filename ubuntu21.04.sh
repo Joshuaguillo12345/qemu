@@ -4,7 +4,7 @@ wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip > /dev/nu
 unzip ngrok-stable-linux-amd64.zip > /dev/null 2>&1
 read -p "Ctrl + V Authtoken(nhập token ngrok): " CRP 
 ./ngrok authtoken $CRP 
-nohup ./ngrok tcp 3388 &>/dev/null &
+nohup ./ngrok tcp 5900 &>/dev/null &
 echo Tải xuống tệp từ sever
 apt-get install qemu
 apt-get install qemu-utils
